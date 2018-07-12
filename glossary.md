@@ -1,9 +1,9 @@
 
-device - end device that gives compute resources
+device - hardware+software that gives compute, internet, storage resources and services on top of it
 
 customer - paying costumer that buys resources
 
-end-device - device that the task run on it 
+end-device - device that runs the task on it
 
 device reseller/affiliator - somone who brings a lots of end-devices for our ecosystem, e.g: app developer
 
@@ -13,6 +13,6 @@ batch task - few tasks to be launched, don't have to be run immediately (but mig
 
 immediate task - task to be launched immediately.
 
-client - some server that wants to run his task on end-devices
+client - some server that wants to run his task on end-devices (belongs to customer)
 
-proxy - intermidiate level between clients and end-devices
+proxy - intermediate level between clients and end-devices (is as device)
