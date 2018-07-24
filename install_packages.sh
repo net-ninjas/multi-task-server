@@ -1,2 +1,2 @@
-pip3 install requests
-pip install requests
+pip3 install requests flask
+pip install requests flask
