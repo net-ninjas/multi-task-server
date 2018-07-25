@@ -1,3 +1,4 @@
+syntax = "proto2";
 package netninja.device;
 
 message register {
@@ -31,7 +32,7 @@ message task {
     message subtask {
         required uint64 id = 1;
         required TaskType type = 2;
-        repeated taskOtions options = 3;
+        repeated taskOption options = 3;
     }
 
     repeated subtask subtasks = 2;
