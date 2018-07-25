@@ -1,0 +1,51 @@
+package netninja.device;
+
+message register {
+    required string sellerCode = 1;
+    required uint64 id = 2;
+
+    enum CapabilityType {
+        URL_RETRIEVE = 0;
+    }
+
+    message Capability {
+        required CapabilityType type = 1;
+        repeated string options = 2;
+    }
+
+    repeated Capability capabilities = 3;
+}
+
+message task {
+    required uint64 id = 1;
+
+    enum TaskType {
+        URL_RETRIEVE = 0;
+    }
+
+    message taskOption {
+        required uint64 flags = 1;
+        repeated string extras = 2;
+    }
+
+    message subtask {
+        required uint64 id = 1;
+        required TaskType type = 2;
+        repeated taskOtions options = 3;
+    }
+
+    repeated subtask subtasks = 2;
+
+}
+
+message result {
+    required uint64 id = 1;
+
+    message subtaskResult {
+        required uint64 id = 1;
+        repeated string answer = 2;
+        repeated string extras = 3;
+    }
+
+    repeated subtaskResult subtaskResults = 2;
+}
