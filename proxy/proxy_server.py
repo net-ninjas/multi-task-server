@@ -600,6 +600,7 @@ class ProxyConnection(LogMixin):
                 'Closing proxy for connection %r at '
                 'address %r' % (self.client.conn, self.client.addr))
 
+
 class ProxyToEndDeviceConnection(ProxyConnection):
 
     def proxy_request(self):
@@ -609,12 +610,15 @@ class ProxyToEndDeviceConnection(ProxyConnection):
                 del_headers=[
                     b'proxy-connection', b'connection', b'keep-alive'],
                 add_headers=[(b'Connection', b'Close')])
+
             # TODO: RAMI -
             # 1. translate to protobuf
             # 2. get active end-device connection
             # 3. send it to end-device
             # 4. get response, and queue to client...
-            print("server=%s" % (request))
+            print("server=%s, url=%s, method=%s" % (request, self.request.url.path, self.request.method))
+            
+            #super(ProxyToEndDeviceConnection, self).proxy_request()
         return;
 
 
