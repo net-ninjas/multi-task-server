@@ -1,0 +1,57 @@
+type Device @model {
+    id: ID! @isUnique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    owner: User! @relation(name: "DevicesOfUser")
+    hardware: String!
+    software: String!
+    reseller: Reseller!
+    sessions: [String!] @relation(name: "OrgDevices")
+}
+
+type User @model {
+    id: ID! @isUnique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    Devices: [Device!] @relation(name: "DevicesOfUser")
+    email: String! @isUnique
+    password: String!
+    phone: String
+    organizations: [Reseller!] @relation(name: "OrgAdmins")
+    tasks: [Task!] @relation(name: "UserTasks")
+}
+
+type Capability @model {
+    id: ID! @isUnique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String! @isUnique
+    description: String!
+    parent: Capability @relation(name: "SubCapabilities")
+    children: [Capability!] @relation(name: "SubCapabilities")
+}
+
+type Reseller @model {
+    id: ID! @isUnique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String! @isUnique
+    description: String
+    admins: [User!]! @relation(name: "OrgAdmins")
+    donators: [Device!] @relation(name: "OrgDevices")
+}
+
+enum TaskStatus {
+    REGITERED
+    ASSIGNED
+    DONE
+}
+
+type Task @model {
+    id: ID! @isUnique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    payee: User! @relation(name: "UserTasks")
+    status: TaskStatus!
+    price: int!
+}
